@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
  * Implements the listener interface to receive the mouse event,
  * that is, the human player click a square to take a move 
  * 
- * @author Shuangshuang Shen
+ * @author Evelyn Shen
  *
  */
 public class SquareListener implements MouseListener{
