@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  * This file contains three classes -- Square, Pieces and DrawBoard.
  * All these classes are extends JPanel class to help implement a GUI Checkers game.
  *  
- * @author Shuangshuang Shen
+ * @author Evelyn Shen
  *
  */
 
