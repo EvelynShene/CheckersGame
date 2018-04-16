@@ -9,7 +9,7 @@ import java.awt.event.MouseListener;
  * that is, the human player click a piece to see its possible move or take a move 
  * If the selected piece has legal move, show possible moves in checker board
  * 
- * @author Shuangshuang Shen
+ * @author Evelyn Shen
  *
  */
 public class PieceListener implements MouseListener{
