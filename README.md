@@ -1,4 +1,4 @@
-# Checkkers
+# Mini-Checkers Game 
 
 ## This is a Mini-Checkers Game using Alpha-Beta Search Algorithm for a human to play against the computer. 
 ## Rules: 
