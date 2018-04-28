@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  * This file contains three classes -- Square, Pieces and DrawBoard.
  * All these classes are extends JPanel class to help implement a GUI Checkers game.
  *  
- * @author Evelyn Shen
+ * @author Shuangshuang Shen
  *
  */
 
@@ -104,16 +104,16 @@ class Pieces extends JPanel{
 		
 		switch(pieceStatus){
 			case Checkerboard.HUMAN:
-				imgPath = "/Users/evelynshen/Documents/workspace/ai/CheckersGame/src/blackpiece.png";
+				imgPath = "../CheckersGame/src/blackpiece.png";
 				break;
 			case Checkerboard.COMPUTER:
-				imgPath = "/Users/evelynshen/Documents/workspace/ai/CheckersGame/src/whitepiece.png";
+				imgPath = "../CheckersGame/src/whitepiece.png";
 				break;
 			case Checkerboard.HTOEND:
-				imgPath = "/Users/evelynshen/Documents/workspace/ai/CheckersGame/src/blacktoend.png";
+				imgPath = "../CheckersGame/src/blacktoend.png";
 				break;
 			case Checkerboard.CTOEND:
-				imgPath = "/Users/evelynshen/Documents/workspace/ai/CheckersGame/src/whitetoend.png";
+				imgPath = "../CheckersGame/src/whitetoend.png";
 				break;
 			default:
 				imgPath = "";
@@ -144,7 +144,6 @@ public class DrawBoard extends JPanel{
 
 	private static final long serialVersionUID = -6156384728427151635L;
 	
-	private static final int SIZE = 6;
 	private int[][] board = new int[6][6];
 	/**
 	 * variable played: indicates whether this turn is for human or computer;
@@ -180,7 +179,7 @@ public class DrawBoard extends JPanel{
 	
 	public void paintComponent(Graphics g){
 		try{
-			Image img = ImageIO.read(new File("/Users/evelynshen/Documents/workspace/ai/CheckersGame/src/boardbg.png"));
+			Image img = ImageIO.read(new File("../CheckersGame/src/boardbg.png"));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 		} catch (IOException e){
 			e.toString();
@@ -309,13 +308,13 @@ public class DrawBoard extends JPanel{
 		boolean jump = false;
 		
 		if(row - 2 >= 0){ //Check Jump move 
-			if((col - 2 >= 0) && (board[row-1][col-1] == Checkerboard.COMPUTER) && (board[row-2][col-2] == Checkerboard.EMPTY)){
+			if((col - 2 >= 0) && ((board[row-1][col-1] == Checkerboard.COMPUTER) || (board[row-1][col-1] == Checkerboard.CTOEND)) && (board[row-2][col-2] == Checkerboard.EMPTY)){
 				getSquare(row-2,col-2).setSelected(true);
 				getSquare(row-2,col-2).removeAll();
 				jump = true;
 				movesnum++;
 			}
-			if((col + 2 <= 5) && (board[row-1][col+1] == Checkerboard.COMPUTER) && (board[row-2][col+2] == Checkerboard.EMPTY)){
+			if((col + 2 <= 5) && ((board[row-1][col+1] == Checkerboard.COMPUTER) || (board[row-1][col+1] == Checkerboard.CTOEND)) && (board[row-2][col+2] == Checkerboard.EMPTY)){
 				getSquare(row-2,col+2).setSelected(true);
 				getSquare(row-2,col+2).removeAll();
 				jump = true;
@@ -360,6 +359,7 @@ public class DrawBoard extends JPanel{
 	public void toMove(int[][] newBoard, boolean played){	
 		
 		Checkers c = new Checkers();
+		
 		//check if have any legal move
 		int[][] movablepieces = c.movablePieces(newBoard, false);
 		ArrayList<int[]> acts = new ArrayList<int[]>();
@@ -381,16 +381,13 @@ public class DrawBoard extends JPanel{
 
 				newBoard[movablepieces[i][0]][movablepieces[i][1]] = Checkerboard.HTOEND;
 			}	
-			System.out.println("No legal move in my turn!");
+			
 			setPlayed(true);
 		}
 		
 		if(!Checkers.equalarray(newBoard, this.board)){
 			setBoard(newBoard);	
-		}
-		
+		}		
 	}
 	
-	
 }
-
